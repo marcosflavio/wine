@@ -1,4 +1,4 @@
-package com.marcosf.wine.main;
+package com.marcosf.wine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
