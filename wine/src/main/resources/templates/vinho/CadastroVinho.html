@@ -5,7 +5,7 @@
 	layout:decorator="layout/LayoutPadrao">
 	
 <head>
-	<title>AlgaWorks</title>
+	<title>Cadastro Vinho</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Cadastro de produto
+				Cadastro de Vinho
 			</h1>
 		</div>
 	</div>
@@ -26,38 +26,44 @@
 			<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
 		</div>
 	
-		<form method="get" class="form-vertical  js-form-loading">
+			<!--  Com th:object="${vinho}" eu posso manusear o objeto vinho enviado para essa view com o theameleaf -->
+		<form method="POST" th:object = "${vinho}" class="form-vertical  js-form-loading">
 			
+			<!-- Com th:field = "*{nome}" eu acesso os atributos do objeto. -->
 			<div class="form-group">
-				<label for="input-produto-nome">Nome</label>
-				<input id="input-produto-nome" type="text" class="form-control"/>
+				<label for="nome">Nome</label>
+				<input id="nome" type="text" class="form-control" th:field = "*{nome}"/>
 			</div>
-	
-			<div class="form-group">
-				<label for="input-produto-descricao">Descrição</label>
-				<textarea id="input-produto-descricao" rows="3" class="form-control"></textarea>
-			</div>
-	
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label for="input-produto-preco">Preço unitário</label>
-						<input id="input-produto-preco" type="text" class="form-control" placeholder="R$"/>
+
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="tipo" class="control-label">Tipo</label> <select
+							id="tipo" class="form-control" th:field="*{tipo}">
+							<option value="">Selecione o tipo</option>
+							<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text = "${tipo.descricao}"> </option>
+						</select>
+					</div>
+
+					<div class="col-sm-6 form-group">
+						<label for="safra" class="control-label"> Safra</label> <input
+							id="safra" type="text" class="form-control" th:field="*{safra}" />
 					</div>
 				</div>
-				
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label for="input-produto-estoque">Estoque</label>
-						<input id="input-produto-estoque" type="text" class="form-control" placeholder="Unidades"/>
+
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="volume" class="control-label">Volume (ml)</label> 
+						<input id="volume" type="text" class="form-control" th:field = "*{volume}"/>
+					</div>
+
+					<div class="col-sm-6 form-group">
+						<label for="valor" class="control-label"> Valor </label> <input
+							id="valor" type="text" class="form-control" th:field = "*{valor}"/>
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
+
+				<div class="form-group">
 				<button class="btn  btn-primary" type="submit">Salvar</button>
-				<a href="#" class="btn  btn-default">Cancelar</a>
-				<a href="#" class="btn  btn-link  aw-btn-link-danger">Excluir este produto</a>
 			</div>
 	
 		</form>
