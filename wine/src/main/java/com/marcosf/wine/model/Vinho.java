@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "vinho")
@@ -18,15 +21,20 @@ public class Vinho {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotBlank(message = "O nome do vinho não pode ser branco!")
 	private String nome;
 	
+	@NotNull(message = "O tipo do vinho não pode ser nulo!")
 	@Enumerated(EnumType.STRING)
 	private TipoVinho tipo;
 	
+	@NotNull(message = "A safra do vinho não pode ser nulo!")
 	private Integer safra;
 	
+	@NotNull(message = "O volume do vinho não pode ser nulo!")
 	private Integer volume;
 	
+	@NotNull(message = "O valor do vinho não pode ser nulo!")
 	private BigDecimal valor;
 	
 	public Vinho() {

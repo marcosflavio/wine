@@ -2,8 +2,11 @@ package com.marcosf.wine.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,8 +43,13 @@ public class VinhosController {
 	
 	 //ele tem o mesmo request mapping, porém, é do método Post, pois iremos
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-	public ModelAndView salva(Vinho vinho) {
+	public ModelAndView salva(@Valid Vinho vinho, BindingResult result) {
 
+		if(result.hasErrors()){
+			
+			return novo(vinho); //retorno novamente pro request mapping novo passando objeto vinho, para que a página
+								//redenrize com os dados do vinho que já foram preenchidos anteriormente.
+		}
 		 
 		cadastroVinhoService.salvar(vinho);
 		

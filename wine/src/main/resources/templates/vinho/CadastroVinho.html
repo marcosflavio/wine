@@ -21,22 +21,33 @@
 
 	<div class="container-fluid">
 	
-		<div class="alert  alert-danger  alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
-		</div>
-	
 			<!--  Com th:object="${vinho}" eu posso manusear o objeto vinho enviado para essa view com o theameleaf -->
 		<form method="POST" th:object = "${vinho}" class="form-vertical  js-form-loading">
 			
+			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				
+				<!-- Th:block é um comando do thymeleaf que nao gera nada em html, usado para colocar iteradores -->	
+				<!--  erro : ${#fields.detailedErrors()} vou iterar no objeto fields do thymeleaf com a função detailed
+				Erros que vai buscar todos os erros daquele field-->
+				<th:block th:each="erro : ${#fields.detailedErrors()}"> 
+					<div>
+					<i class="fa  fa-exclamation-circle"></i>
+					<span th:text ="${erro.message}"></span>
+					</div>
+				</th:block>	
+				
+			</div>
+			
 			<!-- Com th:field = "*{nome}" eu acesso os atributos do objeto. -->
-			<div class="form-group">
-				<label for="nome">Nome</label>
+			<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+				<label for="nome" class="control-label">Nome</label>
 				<input id="nome" type="text" class="form-control" th:field = "*{nome}"/>
 			</div>
 
 				<div class="row">
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-6 form-group"  th:classappend="${#fields.hasErrors('tipo')} ? has-error">
 						<label for="tipo" class="control-label">Tipo</label> <select
 							id="tipo" class="form-control" th:field="*{tipo}">
 							<option value="">Selecione o tipo</option>
@@ -44,19 +55,19 @@
 						</select>
 					</div>
 
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-6 form-group"  th:classappend="${#fields.hasErrors('safra')} ? has-error">
 						<label for="safra" class="control-label"> Safra</label> <input
 							id="safra" type="text" class="form-control" th:field="*{safra}" />
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-6 form-group"  th:classappend="${#fields.hasErrors('volume')} ? has-error">
 						<label for="volume" class="control-label">Volume (ml)</label> 
 						<input id="volume" type="text" class="form-control" th:field = "*{volume}"/>
 					</div>
 
-					<div class="col-sm-6 form-group">
+					<div class="col-sm-6 form-group"  th:classappend="${#fields.hasErrors('valor')} ? has-error">
 						<label for="valor" class="control-label"> Valor </label> <input
 							id="valor" type="text" class="form-control" th:field = "*{valor}"/>
 					</div>
