@@ -61,20 +61,32 @@ public class VinhosController {
 
 	}
 	
+//	@RequestMapping("/{codigo}")
+//	public ModelAndView visualizar(@PathVariable Long codigo){
+//		//Esse método recebe vinhos/codigo do vinho clicado
+//		//@PathVariable usa exatamente o código recebido, pois o nome da váriavel é Long codigo e o
+//		//mapeado também.
+//		
+//		ModelAndView mv = new ModelAndView("/vinho/VisualizacaoVinho");
+//		//Retorno um vinho com aquele código(PK)
+//		Vinho vinho = vinhos.findOne(codigo);
+//		mv.addObject("vinho", vinho);
+//		return mv;
+//		
+//	}
+			
 	@RequestMapping("/{codigo}")
-	public ModelAndView visualizar(@PathVariable Long codigo){
-		//Esse método recebe vinhos/codigo do vinho clicado
-		//@PathVariable usa exatamente o código recebido, pois o nome da váriavel é Long codigo e o
-		//mapeado também.
+	public ModelAndView visualizar(@PathVariable("codigo") Vinho vinho){
+		//Agora estou recebendo o vinho diretamente
+		//passando o nome da variável código antes do objeto
+		//Através do data-JPA ele saberá buscar a chave primária de vinho(codigo)
+		//agr fazemos a configuração no web config.
 		
 		ModelAndView mv = new ModelAndView("/vinho/VisualizacaoVinho");
-		//Retorno um vinho com aquele código(PK)
-		Vinho vinho = vinhos.findOne(codigo);
+
 		mv.addObject("vinho", vinho);
 		return mv;
 		
-	}
-			
-			
+	}		
 
 }

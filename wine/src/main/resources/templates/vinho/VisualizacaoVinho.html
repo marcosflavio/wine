@@ -18,6 +18,35 @@
 			</h1>
 		</div>
 	</div>
+	
+	<div class = "container-fluid">
+		
+		<div class = "row">
+			<div class = "col-sm-9">
+				
+				<div>Foto</div>
+				
+			</div>
+			
+			<div class = "col-sm-3">
+				
+				<ul class = "list-group">
+					<li class = "list-group-item"  th:text="${vinho.tipo.descricao}"> Tipo </li>
+					<li class = "list-group-item"  th:text="${vinho.volume}"> Volume </li>
+					<li class = "list-group-item"  th:text="${vinho.safra}"> Safra </li>
+					<li class = "list-group-item"  th:text="${vinho.valor}"> Valor </li>
+				</ul>
+				
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	
+	
+	
+	
 </section>
 </body>
 </html>
