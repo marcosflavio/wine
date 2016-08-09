@@ -43,6 +43,7 @@ public class VinhosController {
 	}
 	
 	 //ele tem o mesmo request mapping, porém, é do método Post, pois iremos
+	//pegar o objeto cadastrado
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView salva(@Valid Vinho vinho, BindingResult result, RedirectAttributes attributes) {
 		//redirect atributes é pra enviar alguma coisa ao redirecionamento
@@ -58,5 +59,7 @@ public class VinhosController {
 		return new ModelAndView("redirect:/vinhos/novo");
 
 	}
+	
+	
 
 }

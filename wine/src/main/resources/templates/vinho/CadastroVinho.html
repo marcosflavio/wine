@@ -5,7 +5,7 @@
 	layout:decorator="layout/LayoutPadrao">
 	
 <head>
-	<title>Cadastro Vinho</title>
+	<title>Cadastrar novo Vinho</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 		</div>
 		
 	
-			<!--  Com th:object="${vinho}" eu posso manusear o objeto vinho enviado para essa view com o theameleaf -->
+			<!--  Com th:object="${vinho}" eu posso manusear o objeto vinho enviado para essa view com o thymeleaf -->
 		<form method="POST" th:object = "${vinho}" class="form-vertical  js-form-loading">
 			
 			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
