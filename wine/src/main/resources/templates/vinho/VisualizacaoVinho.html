@@ -60,11 +60,10 @@
 	
 <!-- Defino meus JavaScripts -->	
 <th:block layout:fragment="javascript-extra">
-	
-	<script src="/javascripts/vendors/upload.min.js"></script>
-	<script src="/javascripts/vendors/uikit.min.js"></script>
-	<script src="/javascripts/vinho.upload-foto.js"></script>
- </th:block>	
+	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+	<script th:src="@{/javascripts/vinho.upload-foto.js}"></script>
+</th:block>	
 	
 
 </body>
