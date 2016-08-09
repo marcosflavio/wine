@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,6 +61,20 @@ public class VinhosController {
 
 	}
 	
-	
+	@RequestMapping("/{codigo}")
+	public ModelAndView visualizar(@PathVariable Long codigo){
+		//Esse método recebe vinhos/codigo do vinho clicado
+		//@PathVariable usa exatamente o código recebido, pois o nome da váriavel é Long codigo e o
+		//mapeado também.
+		
+		ModelAndView mv = new ModelAndView("/vinho/VisualizacaoVinho");
+		//Retorno um vinho com aquele código(PK)
+		Vinho vinho = vinhos.findOne(codigo);
+		mv.addObject("vinho", vinho);
+		return mv;
+		
+	}
+			
+			
 
 }
