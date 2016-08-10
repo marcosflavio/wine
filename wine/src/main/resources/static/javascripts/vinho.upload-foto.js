@@ -6,6 +6,11 @@ $(function (){
 			type: 'json',
 			filelimit: 1,
 			allow: '*.(jpg|jpeg|png)',
+			action:'/fotos/',
+			complete: function(fotos){
+				
+				console.log('fotos',fotos.nome);
+			}
 	};
 
 	
